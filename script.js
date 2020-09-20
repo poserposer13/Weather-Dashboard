@@ -11,16 +11,24 @@ $('#search').on('click', function () {
     let cityNameInput = $("#searched-city").val()
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityNameInput + "&appid=" + apiKey + "&units=imperial"
 
+    
 
-
+    // Original AJAX call for finding the city and the coordinates for that city
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
 
         console.log(response)
+
+        // Declaring a variable for the city's name
         let cityName = response.name;
-        // Pulling the coordinates to use in another AJAX call to get the uv index
+
+        // Declaring a variable for the date
+        let date = moment().format("M/D/YYYY");
+
+
+        // Pulling the coordinates to use in another AJAX call to get the current temp
         let uvLat = response.coord.lat;
         let uvLon = response.coord.lon;
 
@@ -29,17 +37,22 @@ $('#search').on('click', function () {
             method: "GET"
         }).then(function (res) {
             console.log(res)
+
+
             // Declaring the  current variables
             let uvIndex = res.current.uvi;
             let tempF = res.current.temp;
             let humidityP = res.current.humidity;
             let windS = res.current.wind_speed;
 
-            currentCity.text(cityName)
-            currentTemp.text("Current Temperature: " + tempF + "℉");
+            //Setting the text of the html to what we get from the search
+            currentCity.text(cityName + " (" + date + ")")
+            currentTemp.text("Current Temperature: " + tempF + " ℉");
             currentHumidity.text("Current Humidity: " + humidityP + "%");
-            currentWS.text("Current Wind Speed: " + windS + "MPH");
-            currentUV.text("UV Index: " + uvIndex);
+            currentWS.text("Current Wind Speed: " + windS + " MPH");
+            currentUV.text("Current UV Index: " + uvIndex);
+
+            // Creating a way for displaying differing colors for the increasing uv index
             if (uvIndex <= 4) {
                 currentUV.addClass("bg-success");
             }
@@ -49,11 +62,8 @@ $('#search').on('click', function () {
             else if (uvIndex > 7) {
                 currentUV.addClass("bg-danger")
             }
-
         })
-
-
-
-
     })
+
+
 })

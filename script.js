@@ -1,3 +1,4 @@
+let currentCity = $("#current-city");
 let currentTemp = $("#current-temperature");
 let currentHumidity = $("#current-humidity");
 let currentWS = $("#current-wind-speed");
@@ -18,6 +19,7 @@ $('#search').on('click', function () {
     }).then(function (response) {
 
         console.log(response)
+        let cityName = response.name;
         // Pulling the coordinates to use in another AJAX call to get the uv index
         let uvLat = response.coord.lat;
         let uvLon = response.coord.lon;
@@ -33,13 +35,20 @@ $('#search').on('click', function () {
             let humidityP = res.current.humidity;
             let windS = res.current.wind_speed;
 
+            currentCity.text(cityName)
             currentTemp.text("Current Temperature: " + tempF + "℉");
             currentHumidity.text("Current Humidity: " + humidityP + "%");
             currentWS.text("Current Wind Speed: " + windS + "MPH");
             currentUV.text("UV Index: " + uvIndex);
-
-
-
+            if (uvIndex <= 4) {
+                currentUV.addClass("bg-success");
+            }
+            else if (uvIndex > 4 || uvIndex < 7) {
+                currentUV.addClass("bg-warning");
+            }
+            else if (uvIndex > 7) {
+                currentUV.addClass("bg-danger")
+            }
 
         })
 

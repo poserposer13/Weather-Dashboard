@@ -11,7 +11,7 @@ $('#search').on('click', function () {
     let cityNameInput = $("#searched-city").val()
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityNameInput + "&appid=" + apiKey + "&units=imperial"
 
-    
+    let cityArr = [];
 
     // Original AJAX call for finding the city and the coordinates for that city
     $.ajax({
@@ -23,6 +23,22 @@ $('#search').on('click', function () {
 
         // Declaring a variable for the city's name
         let cityName = response.name;
+
+        // Adding the user's input into an array
+
+        if (cityNameInput === null) {
+            cityArr = [];
+        }
+        else if (cityNameInput !== null) {
+            cityArr.push(cityName);
+            console.log(cityArr);
+        }
+        let previousCity = $("<li>");
+        previousCity.addClass("list-group-item text-white");
+        previousCity.text(cityArr[0]);
+        $("previous-cities").append(previousCity);
+
+
 
         // Declaring a variable for the date
         let date = moment().format("M/D/YYYY");
@@ -51,6 +67,7 @@ $('#search').on('click', function () {
             currentHumidity.text("Current Humidity: " + humidityP + "%");
             currentWS.text("Current Wind Speed: " + windS + " MPH");
             currentUV.text("Current UV Index: " + uvIndex);
+            $("#current-weather").addClass("border rounded")
 
             // Creating a way for displaying differing colors for the increasing uv index
             if (uvIndex <= 4) {
@@ -62,8 +79,34 @@ $('#search').on('click', function () {
             else if (uvIndex > 7) {
                 currentUV.addClass("bg-danger")
             }
+
+            // Creating the 5 day forecast
+
+            // 0 is the current day which is why I want to start at 1
+
+            // This code needs to definitely be refactored
+            
+            $("#one-day-temp").text("Temperature: " + res.daily[1].temp.day + " ℉");
+            $("#day-one").removeClass("d-none");
+            $("#two-day-temp").text("Temperature: " + res.daily[2].temp.day + " ℉");
+            $("#day-two").removeClass("d-none");
+            $("#three-day-temp").text("Temperature: " + res.daily[3].temp.day + " ℉");
+            $("#day-three").removeClass("d-none");
+            $("#four-day-temp").text("Temperature: " + res.daily[4].temp.day + " ℉");
+            $("#day-four").removeClass("d-none");
+            $("#five-day-temp").text("Temperature: " + res.daily[5].temp.day + " ℉");
+            $("#day-five").removeClass("d-none");
+            $("#one-day-humid").text("Humidity: " + res.daily[1].humidity + "%");
+            $("#two-day-humid").text("Humidity: " + res.daily[2].humidity + "%");
+            $("#three-day-humid").text("Humidity: " + res.daily[3].humidity + "%");
+            $("#four-day-humid").text("Humidity: " + res.daily[4].humidity + "%");
+            $("#five-day-humid").text("Humidity: " + res.daily[5].humidity + "%");
+
+
+
+
+
         })
+
     })
-
-
 })

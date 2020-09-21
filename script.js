@@ -85,15 +85,19 @@ $('#search').on('click', function () {
             // 0 is the current day which is why I want to start at 1
 
             // This code needs to definitely be refactored
-            
+            $("#day-one-date").text(moment().add(1, 'd').format("M/D/YYYY"))
             $("#one-day-temp").text("Temperature: " + res.daily[1].temp.day + " ℉");
             $("#day-one").removeClass("d-none");
+            $("#day-two-date").text(moment().add(2, 'd').format("M/D/YYYY"))
             $("#two-day-temp").text("Temperature: " + res.daily[2].temp.day + " ℉");
             $("#day-two").removeClass("d-none");
+            $("#day-three-date").text(moment().add(3, 'd').format("M/D/YYYY"))
             $("#three-day-temp").text("Temperature: " + res.daily[3].temp.day + " ℉");
             $("#day-three").removeClass("d-none");
+            $("#day-four-date").text(moment().add(4, 'd').format("M/D/YYYY"))
             $("#four-day-temp").text("Temperature: " + res.daily[4].temp.day + " ℉");
             $("#day-four").removeClass("d-none");
+            $("#day-five-date").text(moment().add(5, 'd').format("M/D/YYYY"))
             $("#five-day-temp").text("Temperature: " + res.daily[5].temp.day + " ℉");
             $("#day-five").removeClass("d-none");
             $("#one-day-humid").text("Humidity: " + res.daily[1].humidity + "%");

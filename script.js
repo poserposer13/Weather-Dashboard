@@ -3,6 +3,7 @@ let currentTemp = $("#current-temperature");
 let currentHumidity = $("#current-humidity");
 let currentWS = $("#current-wind-speed");
 let currentUV = $("#current-uv");
+let currentIcon = $("#current-icon")
 
 // Creating what happens when the search button is clicked
 $('#search').on('click', function () {
@@ -60,9 +61,12 @@ $('#search').on('click', function () {
             let tempF = res.current.temp;
             let humidityP = res.current.humidity;
             let windS = res.current.wind_speed;
+            let weatherIcon = res.current.weather[0].icon
 
             //Setting the text of the html to what we get from the search
-            currentCity.text(cityName + " (" + date + ")")
+            currentCity.text(cityName + " (" + date + ")");
+            currentIcon.attr("src", "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png")
+            
             currentTemp.text("Current Temperature: " + tempF + " ℉");
             currentHumidity.text("Current Humidity: " + humidityP + "%");
             currentWS.text("Current Wind Speed: " + windS + " MPH");
@@ -87,24 +91,29 @@ $('#search').on('click', function () {
             // This code needs to definitely be refactored
             $("#day-one-date").text(moment().add(1, 'd').format("M/D/YYYY"))
             $("#one-day-temp").text("Temperature: " + res.daily[1].temp.day + " ℉");
+            $("#one-day-humid").text("Humidity: " + res.daily[1].humidity + "%");
             $("#day-one").removeClass("d-none");
             $("#day-two-date").text(moment().add(2, 'd').format("M/D/YYYY"))
             $("#two-day-temp").text("Temperature: " + res.daily[2].temp.day + " ℉");
+            $("#two-day-humid").text("Humidity: " + res.daily[2].humidity + "%");
             $("#day-two").removeClass("d-none");
             $("#day-three-date").text(moment().add(3, 'd').format("M/D/YYYY"))
             $("#three-day-temp").text("Temperature: " + res.daily[3].temp.day + " ℉");
+            $("#three-day-humid").text("Humidity: " + res.daily[3].humidity + "%");
             $("#day-three").removeClass("d-none");
             $("#day-four-date").text(moment().add(4, 'd').format("M/D/YYYY"))
             $("#four-day-temp").text("Temperature: " + res.daily[4].temp.day + " ℉");
+            $("#four-day-humid").text("Humidity: " + res.daily[4].humidity + "%");
             $("#day-four").removeClass("d-none");
             $("#day-five-date").text(moment().add(5, 'd').format("M/D/YYYY"))
             $("#five-day-temp").text("Temperature: " + res.daily[5].temp.day + " ℉");
-            $("#day-five").removeClass("d-none");
-            $("#one-day-humid").text("Humidity: " + res.daily[1].humidity + "%");
-            $("#two-day-humid").text("Humidity: " + res.daily[2].humidity + "%");
-            $("#three-day-humid").text("Humidity: " + res.daily[3].humidity + "%");
-            $("#four-day-humid").text("Humidity: " + res.daily[4].humidity + "%");
             $("#five-day-humid").text("Humidity: " + res.daily[5].humidity + "%");
+            $("#day-five").removeClass("d-none");
+            
+            
+            
+            
+            
 
 
 

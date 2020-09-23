@@ -14,7 +14,7 @@
 
 <body>
     <div class="container-fluid">
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron jumbotron-fluid border rounded mb-2  border-info">
             <div class="container w-5 mw-100">
                 <h1 class="display-4 text-center">Weather Dashboard</h1>
             </div>
@@ -36,9 +36,11 @@
 
             </div>
 
+            <div class="col-1-sm">
 
+            </div>
 
-            <div class="col-sm-6" id="current-weather">
+            <div class="col-sm-8" id="current-weather">
 
                 <h2 id="current-city"></h2>
                 <img src="" id="current-icon">
@@ -49,8 +51,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <div class="card d-none" id="day-one">
+            <div class="col-3"></div>
+
+            <div class="col-sm my-2">
+                <div class="card d-none bg-info" id="day-one">
                     <div class="card-body">
                         <div id="one-day-forecast">
                             <h5 id="day-one-date"></h5>
@@ -60,57 +64,57 @@
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="col">
-                    <div class="card d-none" id="day-two">
-                        <div class="card-body">
-                            <div id="two-day-forecast">
-                                <h5 id="day-two-date"></h5>
-                                <img src="" id="day-two-icon">
-                                <h6 id="two-day-temp"></h6>
-                                <h6 id="two-day-humid"></h6>
-                            </div>
+            </div>
+            <div class="col-sm my-2">
+                <div class="card d-none bg-info" id="day-two">
+                    <div class="card-body">
+                        <div id="two-day-forecast">
+                            <h5 id="day-two-date"></h5>
+                            <img src="" id="day-two-icon">
+                            <h6 id="two-day-temp"></h6>
+                            <h6 id="two-day-humid"></h6>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card d-none" id="day-three">
-                        <div class="card-body">
-                            <div id="three-day-forecast">
-                                <h5 id="day-three-date"></h5>
-                                <img src="" id="day-three-icon">
-                                <h6 id="three-day-temp"></h6>
-                                <h6 id="three-day-humid"></h6>
-                            </div>
+            </div>
+            <div class="col-sm my-2">
+                <div class="card d-none bg-info" id="day-three">
+                    <div class="card-body">
+                        <div id="three-day-forecast">
+                            <h5 id="day-three-date"></h5>
+                            <img src="" id="day-three-icon">
+                            <h6 id="three-day-temp"></h6>
+                            <h6 id="three-day-humid"></h6>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card d-none" id="day-four">
-                        <div class="card-body">
-                            <div id="four-day-forecast">
-                                <h5 id="day-four-date"></h5>
-                                <img src="" id="day-four-icon">
-                                <h6 id="four-day-temp"></h6>
-                                <h6 id="four-day-humid"></h6>
-                            </div>
+            </div>
+            <div class="col-sm my-2">
+                <div class="card d-none bg-info" id="day-four">
+                    <div class="card-body">
+                        <div id="four-day-forecast">
+                            <h5 id="day-four-date"></h5>
+                            <img src="" id="day-four-icon">
+                            <h6 id="four-day-temp"></h6>
+                            <h6 id="four-day-humid"></h6>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card d-none" id="day-five">
-                        <div class="card-body">
-                            <div id="five-day-forecast">
-                                <h5 id="day-five-date"></h5>
-                                <img src="" id="day-five-icon">
-                                <h6 id="five-day-temp"></h6>
-                                <h6 id="five-day-humid"></h6>
-                            </div>
+            </div>
+            <div class="col-sm my-2">
+                <div class="card d-none bg-info" id="day-five">
+                    <div class="card-body">
+                        <div id="five-day-forecast">
+                            <h5 id="day-five-date"></h5>
+                            <img src="" id="day-five-icon">
+                            <h6 id="five-day-temp"></h6>
+                            <h6 id="five-day-humid"></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 

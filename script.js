@@ -11,15 +11,13 @@ $(document).ready(function () {
 
     let searchedCities = localStorage.getItem("searched-cities");
 
-    console.log(searchedCities)
-    if (searchedCities !== null) {
-        cityArr = JSON.parse(searchedCities)
-    }
-
-    
 
 
-    
+
+
+
+
+
 
     // Creating what happens when the search button is clicked
     $('#search').on('click', function (event) {
@@ -28,18 +26,28 @@ $(document).ready(function () {
         let cityNameInput = $("#searched-city").val()
         let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityNameInput + "&appid=" + apiKey + "&units=imperial"
 
-
+        // This is included in the function as well so that when the button is clicked, this function helps set everything up
+        currentUV.removeClass("d-inline bg-danger bg-success bg-warning");
 
         cityArr.push(cityNameInput);
+
+        if (searchedCities !== null) {
+            cityArr = JSON.parse(searchedCities)
+        }
+        console.log(searchedCities)
         localStorage.setItem("searched-cities", JSON.stringify(cityArr));
         let renderList = function () {
             for (let i = 0; i < 9; i++) {
-                
-                let previousCity = $(`<li class="list-group-item">`);
-                previousCity.text(cityArr[i]);
-                $("previous-cities").append(previousCity);
-                // This is included in the function as well so that 
-                currentUV.removeClass("d-inline bg-danger bg-success bg-warning");
+
+                let previousCities = $("previous-cities")
+                let previousCity = $("<li>");
+                previousCity.addClass("list-group-item")
+                previousCity.html(cityArr[i]);
+                previousCities.append(previousCity);
+
+
+                console.log(previousCity)
+
             }
         }
         renderList();
@@ -74,8 +82,8 @@ $(document).ready(function () {
             }).then(function (res) {
                 console.log(res)
 
-            
-                renderList();
+
+
 
 
 

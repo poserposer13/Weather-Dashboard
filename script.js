@@ -6,7 +6,7 @@ $(document).ready(function () {
     let currentUV = $("#current-uv");
     let currentIcon = $("#current-icon");
 
-    // Pull from local storage later
+    // Setting an array to get a list of cities that were searched
     let cityArr = [];
 
     let searchedCities = localStorage.getItem("searched-cities");
@@ -34,10 +34,12 @@ $(document).ready(function () {
         localStorage.setItem("searched-cities", JSON.stringify(cityArr));
         let renderList = function () {
             for (let i = 0; i < 9; i++) {
+                
                 let previousCity = $(`<li class="list-group-item">`);
-                previousCity.text(cityNameInput);
+                previousCity.text(cityArr[i]);
                 $("previous-cities").append(previousCity);
-    
+                // This is included in the function as well so that 
+                currentUV.removeClass("d-inline bg-danger bg-success bg-warning");
             }
         }
         renderList();
@@ -72,8 +74,7 @@ $(document).ready(function () {
             }).then(function (res) {
                 console.log(res)
 
-                // Adding the user's input into an array
-
+            
                 renderList();
 
 
@@ -100,13 +101,13 @@ $(document).ready(function () {
 
                 // Creating a way for displaying differing colors for the increasing uv index
                 if (uvIndex <= 4) {
-                    currentUV.addClass("bg-success");
+                    currentUV.addClass("d-inline bg-success");
                 }
-                else if (uvIndex > 4 || uvIndex < 7) {
-                    currentUV.addClass("bg-warning");
+                if (uvIndex > 4 && uvIndex < 7) {
+                    currentUV.addClass("d-inline bg-warning");
                 }
-                else if (uvIndex > 7) {
-                    currentUV.addClass("bg-danger")
+                if (uvIndex >= 7) {
+                    currentUV.addClass("d-inline bg-danger")
                 }
 
                 // Creating the 5 day forecast
